@@ -96,7 +96,7 @@ const TruckTable2Page = () => {
   };
 
   return (
-    <div className="px-12 py-6">
+    <div className="px-2 sm:px-12 py-6">
       <TruckForm
         localStore={localStore}
         setlocalStore={setlocalStore}
