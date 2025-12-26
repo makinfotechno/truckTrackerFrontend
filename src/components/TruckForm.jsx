@@ -12,7 +12,7 @@ import { v4 as uuid } from "uuid";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { STATUS_COLORS, STATUS_LEGEND } from "@/constants/staticData";
-import { X } from "lucide-react";
+import { Trash, X } from "lucide-react";
 import axios from "axios";
 
 export default function TruckForm({
@@ -109,6 +109,15 @@ if(data.status === 'error'){
     };
     fetchData();
   }, [refresh]);
+
+  const deliveriesDeleteHandler = (index) => {
+    if(deliveries.length === 1){
+      alert("Atleast one delivery is required");
+      return;
+    }
+    const updatedDeliveries = deliveries.filter((_, i) => i !== index);
+    setDeliveries(updatedDeliveries);
+  }
 
   return (
 <div className="max-w-8xl mx-auto p-4 bg-white shadow-lg rounded-lg mt-2 mb-4">
@@ -271,7 +280,7 @@ if(data.status === 'error'){
             const radioValue = String(index);
             return (
               <div
-                className="flex flex-col sm:flex-row sm:items-center gap-2"
+                className="flex flex-col sm:flex-row sm:items-center gap-2 items-center"
                 key={index}
               >
                 <div className="mr-2">
@@ -313,6 +322,7 @@ if(data.status === 'error'){
                     }
                   />
                 </div>
+                 <Trash color="red" className="mb-2 cursor-pointer" onClick={() => deliveriesDeleteHandler(index)}/>
               </div>
             );
           })}
