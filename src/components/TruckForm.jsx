@@ -26,6 +26,8 @@ export default function TruckForm({
   selectBg,
   setUpdatedId,
   localStore,
+  setIsLoading,
+  setError
 }) {
   const [refresh, setRefresh] = useState(true);
   const [tripStatus, setTripStatus] = useState("Active");
@@ -94,9 +96,16 @@ export default function TruckForm({
   };
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchData = async () => {
       const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/trucks`);
+if(data.status === 'error'){
+  alert('Error fetching data from server');
+  setIsLoading(false);
+  return;
+}
       setlocalStore(data);
+      setIsLoading(false);
     };
     fetchData();
   }, [refresh]);

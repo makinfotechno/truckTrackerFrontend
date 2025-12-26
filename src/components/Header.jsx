@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -9,17 +10,32 @@ export default function Header() {
         </div>
         <h1 className="text-lg font-semibold tracking-wide">TruckTracker</h1>
       </div>
-
       <nav className="hidden md:flex items-center gap-6 text-sm">
-        <a href="/" className="hover:text-blue-400 transition">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `transition ${
+              isActive
+                ? "text-blue-500 font-semibold border-b-2 border-blue-500"
+                : "hover:text-blue-400"
+            }`
+          }
+        >
           Dashboard
-        </a>
-        {/* <a href="/table2" className="hover:text-blue-400 transition">
-          Table 2
-        </a> */}
-        <a href="#" className="hover:text-blue-400 transition">
-          Reports
-        </a>
+        </NavLink>
+
+        <NavLink
+          to="/history"
+          className={({ isActive }) =>
+            `transition ${
+              isActive
+                ? "text-blue-500 font-semibold border-b-2 border-blue-500"
+                : "hover:text-blue-400"
+            }`
+          }
+        >
+          History
+        </NavLink>
       </nav>
 
       <div className="flex items-center gap-4">

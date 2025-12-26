@@ -10,12 +10,35 @@ const TruckTable2Page = () => {
   const [localStore, setlocalStore] = useState([]);
   const [updatedId, setUpdatedId] = useState("");
   const [selectBg, setSelectBg] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const columns = [
     { accessorKey: "truckNo", header: "TRUCK NO" },
     {
       accessorKey: "status",
       header: "STATUS",
+      enableSorting: true,
+      sortingFn: (rowA, rowB) => {
+        console.log(rowA, rowB, "rowss");
+        const a = rowA.original.status;
+        const b = rowB.original.status;
+
+        if (
+          a === "Waiting for order" ||
+          (a === "Waiting for Return order" && b !== "Waiting for order") ||
+          b === "Waiting for Return order"
+        )
+          return -1;
+        if (
+          (a !== "Waiting for order" &&
+            a !== "Waiting for Return order" &&
+            b === "Waiting for order") ||
+          b === "Waiting for Return order"
+        )
+          return 1;
+        return 0; // keep rest as-is
+      },
       Cell: ({ cell }) => {
         const value = cell.getValue();
         const bgColor = STATUS_COLORS[value];
@@ -108,6 +131,8 @@ const TruckTable2Page = () => {
         setUpdatedId={setUpdatedId}
         setSelectBg={setSelectBg}
         selectBg={selectBg}
+        setIsLoading={setIsLoading}
+        setError={setError}
       />
 
       <MaterialReactTable
@@ -116,7 +141,9 @@ const TruckTable2Page = () => {
         enableRowActions
         initialState={{
           density: "compact",
+          sorting: [{ id: "status", desc: false }],
         }}
+        state={{ isLoading }}
         muiTableHeadRowProps={{
           sx: {
             backgroundColor: "#1976d2",
