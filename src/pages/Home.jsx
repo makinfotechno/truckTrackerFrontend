@@ -20,7 +20,6 @@ const TruckTable2Page = () => {
       header: "STATUS",
       enableSorting: true,
       sortingFn: (rowA, rowB) => {
-        console.log(rowA, rowB, "rowss");
         const a = rowA.original.status;
         const b = rowB.original.status;
 
