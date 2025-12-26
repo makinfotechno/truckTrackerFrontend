@@ -46,11 +46,12 @@ const TruckTable2Page = () => {
             style={{
               backgroundColor: bgColor,
               color: "#000",
-              padding: "4px 6px",
-              borderRadius: "4px",
+              padding: "4px 10px",
+              borderRadius: "12px",
               fontSize: "14 px",
               fontWeight: 500,
               whiteSpace: "nowrap",
+              boxShadow: "0 3px 2px rgba(0,0,0,0.2)",
             }}
           >
             {value}
