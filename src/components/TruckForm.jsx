@@ -124,11 +124,13 @@ export default function TruckForm({
                   <SelectValue placeholder="Truck Number" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="GJ36V9255">GJ36V9255</SelectItem>
-                  <SelectItem value="GJ36V9266">GJ36V9266</SelectItem>
-                  <SelectItem value="GJ36V9277">GJ36V9277</SelectItem>
-                  <SelectItem value="GJ36V9288">GJ36V9288</SelectItem>
-                  <SelectItem value="GJ36V9299">GJ36V9299</SelectItem>
+                  <SelectItem value="GJ36V9205">GJ36V9205</SelectItem>
+                  <SelectItem value="GJ36V9460">GJ36V9460</SelectItem>
+                  <SelectItem value="GJ36V3805">GJ36V3805</SelectItem>
+                  <SelectItem value="GJ36V4118">GJ36V4118</SelectItem>
+                  <SelectItem value="GJ36V7765">GJ36V7765</SelectItem>
+                  <SelectItem value="GJ36V7984">GJ36V7984</SelectItem>
+                  <SelectItem value="GJ36V3496">GJ36V3496</SelectItem>
                 </SelectContent>
               </Select>
 
