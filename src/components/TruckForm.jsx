@@ -289,7 +289,6 @@ if(data.status === 'error'){
                     onChange={(e) =>
                       onChangeHandler("delivery", index, e.target.value)
                     }
-                    required
                   />
                   <Input
                     placeholder="Location"
@@ -297,7 +296,6 @@ if(data.status === 'error'){
                     onChange={(e) =>
                       onChangeHandler("location", index, e.target.value)
                     }
-                    required
                   />
                   <Input
                     placeholder="Party"
@@ -305,7 +303,6 @@ if(data.status === 'error'){
                     onChange={(e) =>
                       onChangeHandler("party", index, e.target.value)
                     }
-                    required
                   />
                   <Input
                     placeholder="Weight (kg)"
@@ -314,7 +311,6 @@ if(data.status === 'error'){
                     onChange={(e) =>
                       onChangeHandler("weight", index, e.target.value)
                     }
-                    required
                   />
                 </div>
               </div>
