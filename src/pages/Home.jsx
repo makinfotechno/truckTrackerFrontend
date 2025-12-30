@@ -69,7 +69,7 @@ const TruckTable2Page = () => {
         return (
           <span
             style={{
-              backgroundColor: value > 3 ? "#fb2c36d4" : "",
+              backgroundColor: value > 6 ? "#fb2c36d4" : "",
               color: "#000",
               padding: "4px 6px",
               borderRadius: "4px",
@@ -142,6 +142,7 @@ const TruckTable2Page = () => {
         initialState={{
           density: "compact",
           sorting: [{ id: "status", desc: false }],
+          isFullScreen: true,
         }}
         state={{ isLoading }}
         muiTableHeadRowProps={{
