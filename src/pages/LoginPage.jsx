@@ -11,10 +11,15 @@ const Login = () => {
 
   const temUser = "adilbhai";
   const tempPassword = "adilbhai@123";
+  const temUser2 = "Sirajbhai";
+  const tempPassword2 = "sirajbhai@1001";
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (loginCred.userName == temUser && loginCred.password == tempPassword) {
+    if (
+      (loginCred.userName == temUser && loginCred.password == tempPassword) ||
+      (loginCred.userName == temUser2 && loginCred.password == tempPassword2)
+    ) {
       setLoginCred({ userName: "", password: "" });
       login("1234567890");
       navigate("/home");
