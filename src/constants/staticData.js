@@ -93,6 +93,16 @@ export const truckData = [ // for subrow type table only
   },
 ];
 
+export const truckList = [
+  {value: 'GJ36V9205', label: 'GJ36V9205'},
+  {value: 'GJ36V9460', label: 'GJ36V9460'},
+  {value: 'GJ36V3805', label: 'GJ36V3805'},
+  {value: 'GJ36V4118', label: 'GJ36V4118'}, 
+  {value: 'GJ36V7765', label: 'GJ36V7765'},
+  {value: 'GJ36V7984', label: 'GJ36V7984'},
+  {value: 'GJ36V3496', label: 'GJ36V3496'},
+]
+
 export const STATUS_COLORS = {
   "Running": "#b9f8cf",
   "Delivery": "#00c951",

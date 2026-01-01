@@ -5,6 +5,7 @@ import TruckForm from "../components/TruckForm";
 import { STATUS_COLORS, truckDataPanel } from "../constants/staticData";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
+import ConfirmationDialog from "@/components/ConfirmationDialog";
 
 const TruckTable2Page = () => {
   const [localStore, setlocalStore] = useState([]);
@@ -12,6 +13,9 @@ const TruckTable2Page = () => {
   const [selectBg, setSelectBg] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [oneWayTripComplete, setOneWayTripComplete] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [refresh, setRefresh] = useState(true);
 
   const columns = [
     { accessorKey: "truckNo", header: "TRUCK NO" },
@@ -118,6 +122,26 @@ const TruckTable2Page = () => {
     setSelectBg(true);
   };
 
+  const handleTripConfirmation = async (oneWayTripId) => {
+    try {
+      const { status, data } = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/trucks/${oneWayTripId}`
+      );
+      if (status !== 200) return;
+      const UpdatedDataWithCompleted = { ...data, tripStatus: "Completed" };
+
+      const getUpdatedDataWithComplete = await axios.put(
+        `${import.meta.env.VITE_API_URL}/api/trucks/${oneWayTripId}`,
+        UpdatedDataWithCompleted
+      );
+      if (getUpdatedDataWithComplete?.status === 200) {
+        setRefresh((prev) => !prev);
+      }
+    } catch (error) {
+      console.error("Error While deleting Truck Oneway Trip: ", error);
+    }
+  };
+
   return (
     <div className="px-2 sm:px-12 py-6">
       <TruckForm
@@ -133,12 +157,17 @@ const TruckTable2Page = () => {
         selectBg={selectBg}
         setIsLoading={setIsLoading}
         setError={setError}
+        setOneWayTripComplete={setOneWayTripComplete}
+        refresh={refresh}
+        setRefresh={setRefresh}
+        setOpen={setOpen}
       />
 
       <MaterialReactTable
         columns={columns}
         data={localStore}
         enableRowActions
+        enableExpanding
         initialState={{
           density: "compact",
           sorting: [{ id: "status", desc: false }],
@@ -156,6 +185,14 @@ const TruckTable2Page = () => {
             fontWeight: "bold",
           },
         }}
+        muiTableBodyRowProps={({ row }) => ({
+          onClick: () => {
+            row.toggleExpanded();
+          },
+          sx: {
+            cursor: "pointer",
+          },
+        })}
         renderDetailPanel={({ row }) => {
           const deliveries = row.original.deliveries;
           if (!deliveries || deliveries.length === 0)
@@ -226,6 +263,23 @@ const TruckTable2Page = () => {
               >
                 Update
               </Button>
+              {(row.original.status == "Unloading" ||
+                row.original.status == "Delivery") &&
+                row.original.selectedDelivery == deliveries.length - 1 && (
+                  <ConfirmationDialog
+                    open={open}
+                    onOpenChange={setOpen}
+                    handleTripConfirmation={handleTripConfirmation}
+                    oneWayTripId={row.original._id} //  USING MONGODB _ID FOR ONEWAY TRIP ID !!!
+                  />
+                  // <Button
+                  //   className="mt-8 ms-2 w-full sm:w-auto cursor-pointer"
+                  //   type="button"
+                  //   variant="destructive"
+                  // >
+                  //   Complete OneWay Delivery
+                  // </Button>
+                )}
             </Box>
           );
         }}

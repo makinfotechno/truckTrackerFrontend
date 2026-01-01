@@ -19,31 +19,27 @@ export default function Header() {
         <>
           <nav className="hidden md:flex items-center gap-6 text-sm">
             <NavLink
-              to="#"
-              className={({ isActive }) =>
-                `transition ${
-                  isActive
-                    ? "text-blue-500 font-semibold border-b-2 border-blue-500"
-                    : "hover:text-blue-400"
+              to="/home"
+              className={({ isActive }) => `transition ${isActive ? "text-blue-500 font-semibold border-b-2 border-blue-500": "hover:text-blue-400"
                 }`
               }
             >
               Dashboard
             </NavLink>
 
-            {/* <NavLink
-              to="/history"
-              className={({ isActive }) =>
-                `transition ${
-                  isActive
-                    ? "text-blue-500 font-semibold border-b-2 border-blue-500"
-                    : "hover:text-blue-400"
-                }`
-              }
-            >
-              History
-            </NavLink> */}
-          </nav>
+        <NavLink
+          to="/trip-history"
+          className={({ isActive }) =>
+            `transition ${
+              isActive
+                ? "text-blue-500 font-semibold border-b-2 border-blue-500"
+                : "hover:text-blue-400"
+            }`
+          }
+        >
+          History
+        </NavLink>
+      </nav>
 
           <div className="flex items-center gap-4">
             <Button
