@@ -171,7 +171,7 @@ const TruckTable2Page = () => {
         initialState={{
           density: "compact",
           sorting: [{ id: "status", desc: false }],
-          isFullScreen: true,
+          // isFullScreen: true,
         }}
         state={{ isLoading }}
         muiTableHeadRowProps={{
