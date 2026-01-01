@@ -133,7 +133,11 @@ export default function TruckForm({
     }
     const updatedDeliveries = deliveries.filter((_, i) => i !== index);
     setDeliveries(updatedDeliveries);
-  }
+  };
+
+  const checkBooked = (truck) => {
+    return localStore.some((i) => i.truckNo === truck.label);
+  };
 
   return (
     <div className="max-w-8xl mx-auto p-4 bg-white shadow-lg rounded-lg mt-2 mb-4">
@@ -160,11 +164,21 @@ export default function TruckForm({
                   <SelectValue placeholder="Truck Number" />
                 </SelectTrigger>
                 <SelectContent>
-                  {truckList.map((truck) => (
-                    <SelectItem value={truck.value} key={truck.value}>
-                      {truck.label}
-                    </SelectItem>
-                  ))}
+                  {truckList.map((truck) => {
+                   let booked =  checkBooked(truck);
+                    return (
+                      <SelectItem
+                        value={truck.value}
+                        key={truck.value}
+                        // disabled = {booked}
+                        className={`${
+                          booked ? "text-gray-500 font-light" : "#000"
+                        }`}
+                      >
+                        {truck.label}
+                      </SelectItem>
+                    );
+                  })}
                 </SelectContent>
               </Select>
 
