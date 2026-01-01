@@ -329,6 +329,7 @@ export default function TruckForm({
                         onChange={(e) =>
                           onChangeHandler("delivery", index, e.target.value)
                         }
+                        required
                       />
                       <Input
                         placeholder="Location"
@@ -336,6 +337,7 @@ export default function TruckForm({
                         onChange={(e) =>
                           onChangeHandler("location", index, e.target.value)
                         }
+                        required
                       />
                       <Input
                         placeholder="Party"
@@ -343,6 +345,7 @@ export default function TruckForm({
                         onChange={(e) =>
                           onChangeHandler("party", index, e.target.value)
                         }
+                        required
                       />
                       <Input
                         placeholder="Weight (kg)"
@@ -351,6 +354,7 @@ export default function TruckForm({
                         onChange={(e) =>
                           onChangeHandler("weight", index, e.target.value)
                         }
+                        required
                       />
                     </div>
                     <Trash
