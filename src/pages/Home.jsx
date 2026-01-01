@@ -52,7 +52,7 @@ const TruckTable2Page = () => {
               color: "#000",
               padding: "4px 10px",
               borderRadius: "12px",
-              fontSize: "14 px",
+              fontSize: "14px",
               fontWeight: 500,
               whiteSpace: "nowrap",
               boxShadow: "0 3px 2px rgba(0,0,0,0.2)",
@@ -77,7 +77,7 @@ const TruckTable2Page = () => {
               color: "#000",
               padding: "4px 6px",
               borderRadius: "4px",
-              fontSize: "14 px",
+              fontSize: "14px",
               fontWeight: 500,
               whiteSpace: "nowrap",
             }}
@@ -183,6 +183,30 @@ const TruckTable2Page = () => {
           sx: {
             color: "#fff",
             fontWeight: "bold",
+
+            "& .MuiSvgIcon-root": {
+              color: "rgba(255,255,255,0.85)",
+            },
+
+            "& .MuiInputBase-input": {
+              color: "#fff",
+            },
+
+            "& .MuiInputLabel-root": {
+              color: "#fff"
+            },
+
+            "& .MuiInput-underline:before": {
+              borderBottomColor: "rgba(255,255,255,0.6)",
+            },
+
+            "& .MuiInput-underline:hover:before": {
+              borderBottomColor: "#fff",
+            },
+
+            "& .MuiInput-underline:after": {
+              borderBottomColor: "#fff",
+            },
           },
         }}
         muiTableBodyRowProps={({ row }) => ({
@@ -259,7 +283,10 @@ const TruckTable2Page = () => {
               </table>
               <Button
                 className="bg-[#919191] ml-4 cursor-pointer"
-                onClick={() => upDateFormData(row.original._id)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  upDateFormData(row.original._id);
+                }}
               >
                 Update
               </Button>
