@@ -8,7 +8,7 @@ export default function Header() {
 
   const logoutHandler = () => logout();
   return (
-    <header className="w-full h-16 bg-black text-white flex items-center justify-between px-6 shadow-md">
+    <header className="w-full h-16 bg-black text-white flex items-center justify-between px-6 shadow-md headercss" >
       <div className="flex items-center gap-3">
         <div className="w-8 h-8 bg-blue-600 rounded-md flex items-center justify-center font-bold">
           T

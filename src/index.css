@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+body {
+  background: linear-gradient(45deg, #207ad369, transparent);
+  height: 100vh;
+}
+
 @custom-variant dark (&:is(.dark *));
 :root {
   font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont,
@@ -134,4 +139,8 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.headercss {
+  background: linear-gradient(10deg, #000000 50%, #1976d2 100%);
 }
